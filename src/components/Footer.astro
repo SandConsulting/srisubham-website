@@ -1,5 +1,6 @@
 ---
 import { branches, company } from '../lib/site';
+import { withBase } from '../lib/url';
 const year = new Date().getFullYear();
 ---
 
@@ -19,7 +20,7 @@ const year = new Date().getFullYear();
       <h2>Contact</h2>
       <a href={company.phoneHref}>{company.phone}</a>
       <a href={`mailto:${company.email}`}>{company.email}</a>
-      <p><a href="/admin">Admin</a></p>
+      <p><a href={withBase('/admin')}>Admin</a></p>
     </div>
   </div>
   <div class="wrap fine-print">© {year} {company.name}</div>

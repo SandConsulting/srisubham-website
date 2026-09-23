@@ -1,10 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getProductBySlug } from '../../lib/db';
+import { getProductBySlug, listProducts } from '../../lib/db';
+import { withBase } from '../../lib/url';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return listProducts().map((product) => ({ params: { slug: product.slug } }));
+}
 
 const slug = Astro.params.slug ?? '';
 const product = getProductBySlug(slug);
-if (!product) Astro.response.status = 404;
 const initial = product?.name.trim().charAt(0).toUpperCase() ?? '';
 ---
 
@@ -14,20 +20,20 @@ const initial = product?.name.trim().charAt(0).toUpperCase() ?? '';
       <article class="product-detail">
         <div class="card-media">
           {product.image_path ? (
-            <img src={product.image_path} alt={product.name} />
+            <img src={withBase(product.image_path)} alt={product.name} />
           ) : (
             <span class="placeholder">{initial}</span>
           )}
         </div>
         <div>
           <p class="eyebrow">
-            <a href={`/products?category=${product.category_slug}`}>{product.category_name}</a>
+            <a href={withBase(`/products?category=${product.category_slug}`)}>{product.category_name}</a>
           </p>
           <h1>{product.name}</h1>
           {product.description ? <p>{product.description}</p> : <p class="empty">No description yet.</p>}
           <p class="empty">Available in our shops. This page does not sell online.</p>
           <p>
-            <a href="/products">Back to products</a>
+            <a href={withBase('/products')}>Back to products</a>
           </p>
         </div>
       </article>
@@ -35,7 +41,7 @@ const initial = product?.name.trim().charAt(0).toUpperCase() ?? '';
       <>
         <h1>Product not found</h1>
         <p>
-          <a href="/products">Back to products</a>
+          <a href={withBase('/products')}>Back to products</a>
         </p>
       </>
     )

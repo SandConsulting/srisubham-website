@@ -2,49 +2,84 @@
 import Base from '../../layouts/Base.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import { listCategories, listProducts } from '../../lib/db';
+import { withBase } from '../../lib/url';
+
+export const prerender = true;
 
 const categories = listCategories();
-const category = Astro.url.searchParams.get('category') ?? '';
-const q = Astro.url.searchParams.get('q') ?? '';
-const products = listProducts({ category, q });
-const active = categories.find((item) => item.slug === category);
-const title = active ? active.name : 'Products';
+const products = listProducts();
 ---
 
-<Base title={title} description="Browse the SRI SUBHAM product catalog.">
-  <h1>{title}</h1>
+<Base title="Products" description="Browse the SRI SUBHAM product catalog.">
+  <h1 id="products-title">Products</h1>
   <p class="lede">Product information only. Ask in store for price and availability.</p>
 
-  <form class="filters-form" method="get" action="/products">
+  <form class="filters-form" id="product-filters" method="get" action={withBase('/products')}>
     <label>
       Category
       <select name="category">
         <option value="">All products</option>
         {
           categories.map((item) => (
-            <option value={item.slug} selected={item.slug === category}>
-              {item.name}
-            </option>
+            <option value={item.slug}>{item.name}</option>
           ))
         }
       </select>
     </label>
     <label>
       Keyword
-      <input type="search" name="q" value={q} placeholder="Search by name" />
+      <input type="search" name="q" placeholder="Search by name" />
     </label>
     <button type="submit">Search</button>
   </form>
 
-  {
-    products.length === 0 ? (
-      <p class="empty">No products match that search.</p>
-    ) : (
-      <div class="grid">
-        {products.map((product) => (
-          <ProductCard product={product} />
-        ))}
-      </div>
-    )
-  }
+  <p class="empty" id="product-empty" hidden>No products match that search.</p>
+  <div class="grid" id="product-grid">
+    {products.map((product) => <ProductCard product={product} />)}
+  </div>
 </Base>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#product-filters');
+  const title = document.querySelector('#products-title');
+  const empty = document.querySelector<HTMLElement>('#product-empty');
+  const cards = [...document.querySelectorAll<HTMLElement>('#product-grid .card')];
+  const categoryInput = form?.querySelector<HTMLSelectElement>('select[name="category"]');
+  const queryInput = form?.querySelector<HTMLInputElement>('input[name="q"]');
+
+  function apply(updateHistory: boolean) {
+    const category = categoryInput?.value ?? '';
+    const q = (queryInput?.value ?? '').trim().toLowerCase();
+    if (updateHistory) {
+      const params = new URLSearchParams();
+      if (category) params.set('category', category);
+      if (q) params.set('q', q);
+      const query = params.toString();
+      const next = query ? `${location.pathname}?${query}` : location.pathname;
+      history.replaceState(null, '', next);
+    }
+    let shown = 0;
+    for (const card of cards) {
+      const matchCategory = !category || card.dataset.category === category;
+      const matchQuery = !q || (card.dataset.name ?? '').includes(q);
+      const visible = matchCategory && matchQuery;
+      card.hidden = !visible;
+      if (visible) shown += 1;
+    }
+    if (empty) empty.hidden = shown > 0;
+    if (title) {
+      const selected = categoryInput?.selectedOptions[0]?.textContent?.trim();
+      title.textContent = category && selected ? selected : 'Products';
+    }
+  }
+
+  const params = new URLSearchParams(location.search);
+  if (categoryInput) categoryInput.value = params.get('category') ?? '';
+  if (queryInput) queryInput.value = params.get('q') ?? '';
+  apply(false);
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    apply(true);
+  });
+</script>

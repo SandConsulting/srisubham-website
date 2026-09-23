@@ -1,5 +1,6 @@
 ---
 import type { Product } from '../lib/db';
+import { withBase } from '../lib/url';
 
 interface Props {
   product: Product;
@@ -9,11 +10,16 @@ const { product } = Astro.props;
 const initial = product.name.trim().charAt(0).toUpperCase();
 ---
 
-<a class="card" href={`/products/${product.slug}`}>
+<a
+  class="card"
+  href={withBase(`/products/${product.slug}`)}
+  data-category={product.category_slug}
+  data-name={product.name.toLowerCase()}
+>
   <div class="card-media">
     {
       product.image_path ? (
-        <img src={product.image_path} alt="" />
+        <img src={withBase(product.image_path)} alt="" />
       ) : (
         <span class="placeholder">{initial}</span>
       )

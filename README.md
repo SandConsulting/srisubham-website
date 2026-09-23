@@ -22,3 +22,9 @@ npm run start
 ```
 
 The Node server reads and writes `data/srisubham.db`. Uploaded product images are stored in `data/uploads`.
+
+## GitHub Pages
+
+`.github/workflows/pages.yml` publishes the public catalog when you run **Deploy to GitHub Pages** by hand on the `main` branch. In the repository settings, set Pages to **GitHub Actions** once.
+
+The published site is static HTML at `https://sandconsulting.github.io/srisubham-website/`. Product pages are generated from the catalog in the repo at build time. The admin console is not part of that site.

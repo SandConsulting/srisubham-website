@@ -1,6 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import { gallerySections } from '../lib/gallery';
+import { withBase } from '../lib/url';
+
+export const prerender = true;
 
 const sections = gallerySections();
 ---
@@ -17,8 +20,8 @@ const sections = gallerySections();
         ) : (
           <div class="gallery-grid">
             {section.images.map((src) => (
-              <a href={src}>
-                <img src={src} alt={`${section.title} shop`} />
+              <a href={withBase(src)}>
+                <img src={withBase(src)} alt={`${section.title} shop`} />
               </a>
             ))}
           </div>

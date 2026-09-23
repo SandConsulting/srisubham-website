@@ -2,8 +2,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/url';
 
-const photo = fs.existsSync(path.join(process.cwd(), 'public', 'about.jpg')) ? '/about.jpg' : null;
+export const prerender = true;
+
+const photo = fs.existsSync(path.join(process.cwd(), 'public', 'about.jpg')) ? withBase('/about.jpg') : null;
 ---
 
 <Base title="About" description="About SRI SUBHAM (M) SDN. BHD, a trading company in Penang.">
