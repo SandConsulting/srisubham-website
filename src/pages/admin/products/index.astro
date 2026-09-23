@@ -1,0 +1,67 @@
+---
+import Admin from '../../../layouts/Admin.astro';
+import { deleteProduct, getProductById, listProductsForAdmin } from '../../../lib/db';
+import { removeUpload } from '../../../lib/uploads';
+
+let error = Astro.url.searchParams.get('error') ?? '';
+
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const id = Number(form.get('id'));
+  const product = getProductById(id);
+  if (!product) {
+    error = 'Product not found.';
+  } else {
+    removeUpload(product.image_path);
+    deleteProduct(id);
+    return Astro.redirect('/admin/products');
+  }
+}
+
+const products = listProductsForAdmin();
+---
+
+<Admin title="Products">
+  {error && <p class="error">{error}</p>}
+  <p><a class="button" href="/admin/products/new">Add product</a></p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Category</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          products.map((product) => (
+            <tr>
+              <td>
+                {product.image_path ? (
+                  <img class="thumb" src={product.image_path} alt="" />
+                ) : (
+                  <span class="thumb placeholder">{product.name.charAt(0)}</span>
+                )}
+              </td>
+              <td>{product.name}</td>
+              <td>{product.category_name}</td>
+              <td>
+                <div class="row-actions">
+                  <a class="button secondary" href={`/admin/products/${product.id}`}>
+                    Edit
+                  </a>
+                  <form method="post" onsubmit="return confirm('Delete this product?')">
+                    <input type="hidden" name="id" value={product.id} />
+                    <button class="danger" type="submit">Delete</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Admin>

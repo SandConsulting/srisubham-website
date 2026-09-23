@@ -1,0 +1,47 @@
+---
+import '../../styles/global.css';
+import { passwordMatches, setSession } from '../../lib/auth';
+
+let error = '';
+if (Astro.request.method === 'POST') {
+  const form = await Astro.request.formData();
+  const password = String(form.get('password') ?? '');
+  if (passwordMatches(password)) {
+    setSession(Astro.cookies);
+    return Astro.redirect('/admin');
+  }
+  error = 'That password is not correct.';
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Admin login · SRI SUBHAM</title>
+  </head>
+  <body class="admin">
+    <main>
+      <form class="login-card stack" method="post">
+        <img src="/logo.jpg" alt="SRI SUBHAM" style="height: 84px; width: auto" />
+        <h1>Admin</h1>
+        <p class="empty">Manage categories and product information.</p>
+        {error && <p class="error">{error}</p>}
+        <label>
+          Password
+          <input type="password" name="password" required autocomplete="current-password" />
+        </label>
+        <button type="submit">Log in</button>
+        <a href="/">Back to the site</a>
+      </form>
+    </main>
+  </body>
+</html>

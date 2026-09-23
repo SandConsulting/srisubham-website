@@ -1,0 +1,52 @@
+---
+import type { Category, Product } from '../lib/db';
+
+interface Props {
+  categories: Category[];
+  product?: Product;
+  error?: string;
+}
+
+const { categories, product, error = '' } = Astro.props;
+const action = product ? `/admin/products/${product.id}` : '/admin/products/new';
+---
+
+{error && <p class="error">{error}</p>}
+<form class="stack" method="post" action={action} enctype="multipart/form-data">
+  <label>
+    Name
+    <input name="name" required value={product?.name ?? ''} />
+  </label>
+  <label>
+    Category
+    <select name="category_id" required>
+      <option value="">Choose a category</option>
+      {
+        categories.map((category) => (
+          <option value={category.id} selected={category.id === product?.category_id}>
+            {category.name}
+          </option>
+        ))
+      }
+    </select>
+  </label>
+  <label>
+    Description
+    <textarea name="description">{product?.description ?? ''}</textarea>
+  </label>
+  <label>
+    Image
+    <input name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+  </label>
+  {
+    product?.image_path && (
+      <p>
+        <img class="thumb" src={product.image_path} alt="" />
+      </p>
+    )
+  }
+  <div class="row-actions">
+    <button type="submit">{product ? 'Save changes' : 'Add product'}</button>
+    <a class="button secondary" href="/admin/products">Cancel</a>
+  </div>
+</form>

@@ -1,0 +1,26 @@
+---
+import { branches, company } from '../lib/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <h2>{company.name}</h2>
+      <p>
+        Groceries, textiles, herbal and healthcare items, prayer goods, and general trading from our shops in Penang.
+      </p>
+    </div>
+    <div>
+      <h2>Perai headquarters</h2>
+      {branches[0].lines.map((line) => <p>{line}</p>)}
+    </div>
+    <div class="footer-contact">
+      <h2>Contact</h2>
+      <a href={company.phoneHref}>{company.phone}</a>
+      <a href={`mailto:${company.email}`}>{company.email}</a>
+      <p><a href="/admin">Admin</a></p>
+    </div>
+  </div>
+  <div class="wrap fine-print">© {year} {company.name}</div>
+</footer>

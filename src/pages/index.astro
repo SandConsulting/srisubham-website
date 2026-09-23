@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { featuredProducts, listCategoriesWithCovers, listProducts } from '../lib/db';
+import { branches, company, mapsUrl } from '../lib/site';
+
+const categories = listCategoriesWithCovers();
+const loop = [...categories, ...categories];
+const products = featuredProducts(8);
+const stats = [
+  { value: String(branches.length), label: 'Shops' },
+  { value: String(listProducts().length), label: 'Products' },
+  { value: String(categories.length), label: 'Categories' },
+];
+---
+
+<Base title="Home">
+  <section class="hero">
+    <div class="hero-copy">
+      <h1>Groceries, textiles and everyday goods</h1>
+      <p class="lede">
+        {company.name} is a family trading company in Penang. This site shows what we carry. Visit a shop to buy.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/products">Browse products</a>
+        <a class="button secondary" href="/contact">Contact</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="hero-video">
+        <video autoplay muted loop playsinline>
+          <source src="/srisubham-stores-hero.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-stats">
+        {
+          stats.map((item) => (
+            <div>
+              <strong>{item.value}</strong>
+              <span>{item.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="category-scroll">
+    <h2>Popular categories</h2>
+    <div class="category-viewport">
+      <div class="category-track">
+        {
+          loop.map((category) => (
+            <a class="category-pill" href={`/products?category=${category.slug}`}>
+              <span>
+                {category.name}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M3 11L11 3M11 3H5.5M11 3V8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              {category.image_path && <img src={category.image_path} alt="" />}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2>Products</h2>
+    <a href="/products">All products</a>
+  </div>
+  <div class="grid">
+    {products.map((product) => <ProductCard product={product} />)}
+  </div>
+
+  <div class="section-head">
+    <h2>Our shops</h2>
+    <a href="/contact">Contact</a>
+  </div>
+  <div class="branch-list">
+    {
+      branches.map((branch) => (
+        <article class="panel">
+          <h3>{branch.name}</h3>
+          {branch.lines.map((line) => (
+            <p>{line}</p>
+          ))}
+          <p>
+            <a href={mapsUrl(branch.lines)}>Map</a>
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</Base>

@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import { gallerySections } from '../lib/gallery';
+
+const sections = gallerySections();
+---
+
+<Base title="Gallery" description="Photos of SRI SUBHAM shops in Perai, Butterworth, Nibong Tebal, Penang, and the Padang Serai warehouse.">
+  <h1>Gallery</h1>
+  <p class="lede">Shops and the Padang Serai warehouse.</p>
+  {
+    sections.map((section) => (
+      <section class="gallery-section">
+        <h2>{section.title}</h2>
+        {section.images.length === 0 ? (
+          <p class="empty">No photos in this group yet.</p>
+        ) : (
+          <div class="gallery-grid">
+            {section.images.map((src) => (
+              <a href={src}>
+                <img src={src} alt={`${section.title} shop`} />
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+    ))
+  }
+</Base>

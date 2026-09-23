@@ -1,0 +1,26 @@
+---
+import type { Product } from '../lib/db';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const initial = product.name.trim().charAt(0).toUpperCase();
+---
+
+<a class="card" href={`/products/${product.slug}`}>
+  <div class="card-media">
+    {
+      product.image_path ? (
+        <img src={product.image_path} alt="" />
+      ) : (
+        <span class="placeholder">{initial}</span>
+      )
+    }
+  </div>
+  <div class="card-body">
+    <h3>{product.name}</h3>
+    <p>{product.category_name}</p>
+  </div>
+</a>

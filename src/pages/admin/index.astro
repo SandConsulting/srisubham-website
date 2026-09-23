@@ -1,0 +1,21 @@
+---
+import Admin from '../../layouts/Admin.astro';
+import { listCategories, listProductsForAdmin } from '../../lib/db';
+
+const categories = listCategories();
+const products = listProductsForAdmin();
+---
+
+<Admin title="Overview">
+  <p class="lede">Update the catalog shown on the public site. Nothing here takes orders.</p>
+  <div class="stats">
+    <a class="panel" href="/admin/categories">
+      <strong>{categories.length}</strong>
+      Categories
+    </a>
+    <a class="panel" href="/admin/products">
+      <strong>{products.length}</strong>
+      Products
+    </a>
+  </div>
+</Admin>

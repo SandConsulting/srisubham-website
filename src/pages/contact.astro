@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import { branches, company, mapsUrl } from '../lib/site';
+---
+
+<Base title="Contact" description="Addresses, email, and phone for SRI SUBHAM shops in Penang.">
+  <h1>Contact</h1>
+  <p class="lede">Call, email, or visit. Orders are taken in the shops.</p>
+  <div class="contact-grid" style="margin-bottom: 1rem">
+    <article class="panel">
+      <h2>Email</h2>
+      <p class="footer-contact"><a href={`mailto:${company.email}`}>{company.email}</a></p>
+    </article>
+    <article class="panel">
+      <h2>Phone</h2>
+      <p class="footer-contact"><a href={company.phoneHref}>{company.phone}</a></p>
+    </article>
+  </div>
+  <div class="contact-grid">
+    {
+      branches.map((branch) => (
+        <article class="panel">
+          <h2>{branch.name}</h2>
+          {branch.lines.map((line) => (
+            <p>{line}</p>
+          ))}
+          <p>
+            <a href={mapsUrl(branch.lines)}>Open in Maps</a>
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</Base>

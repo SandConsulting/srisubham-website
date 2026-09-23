@@ -1,0 +1,43 @@
+---
+import Admin from '../../../layouts/Admin.astro';
+import ProductForm from '../../../components/ProductForm.astro';
+import { getProductById, listCategories, updateProduct } from '../../../lib/db';
+import { removeUpload, saveImage } from '../../../lib/uploads';
+
+const id = Number(Astro.params.id);
+const product = getProductById(id);
+if (!product) Astro.response.status = 404;
+const categories = listCategories();
+let error = '';
+
+if (product && Astro.request.method === 'POST') {
+  let image: string | null = null;
+  try {
+    const form = await Astro.request.formData();
+    image = await saveImage(form.get('image') as File);
+    updateProduct(id, {
+      name: String(form.get('name') ?? ''),
+      categoryId: Number(form.get('category_id')),
+      description: String(form.get('description') ?? ''),
+      imagePath: image ?? undefined,
+    });
+    if (image) removeUpload(product.image_path);
+    return Astro.redirect(`/admin/products/${id}`);
+  } catch (err) {
+    removeUpload(image);
+    error = err instanceof Error ? err.message : 'Could not save the product.';
+  }
+}
+---
+
+<Admin title={product ? product.name : 'Product not found'}>
+  {
+    product ? (
+      <ProductForm categories={categories} product={product} error={error} />
+    ) : (
+      <p>
+        <a href="/admin/products">Back to products</a>
+      </p>
+    )
+  }
+</Admin>

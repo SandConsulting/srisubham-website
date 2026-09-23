@@ -1,0 +1,25 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '../layouts/Base.astro';
+
+const photo = fs.existsSync(path.join(process.cwd(), 'public', 'about.jpg')) ? '/about.jpg' : null;
+---
+
+<Base title="About" description="About SRI SUBHAM (M) SDN. BHD, a trading company in Penang.">
+  <h1>About us</h1>
+  <div class="about-layout">
+    <div>
+      <p>
+        Welcome to SRI SUBHAM (M) SDN. BHD, where quality meets variety. We are a one-stop destination for groceries, textiles, garments, silver and brass wares, herbal and healthcare items, cosmetics, and general trading needs.
+      </p>
+      <p>
+        From our headquarters in Taman Inderawasih, Perai, and branches in Butterworth, Nibong Tebal, and Penang, we stock everyday essentials and specialty goods. The range is chosen for quality and value, and the shop teams are there to help you find what you need.
+      </p>
+      <p>
+        This website is a catalog of that range. Prices and purchases are handled in the shops, not online.
+      </p>
+    </div>
+    {photo && <img src={photo} alt="Inside a SRI SUBHAM shop" />}
+  </div>
+</Base>

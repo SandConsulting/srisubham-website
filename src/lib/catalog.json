@@ -1,0 +1,440 @@
+{
+  "categories": [
+    {
+      "name": "Groceries",
+      "slug": "groceries"
+    },
+    {
+      "name": "Biscuits",
+      "slug": "biscuits"
+    },
+    {
+      "name": "Drinks",
+      "slug": "drinks"
+    },
+    {
+      "name": "Dairy and Bakery",
+      "slug": "dairy-and-bakery"
+    },
+    {
+      "name": "Cooking Essentials",
+      "slug": "cooking-essentials"
+    },
+    {
+      "name": "Rice",
+      "slug": "rice"
+    },
+    {
+      "name": "Packaged Foods",
+      "slug": "packaged-foods"
+    },
+    {
+      "name": "Home Care",
+      "slug": "home-care"
+    },
+    {
+      "name": "Textiles",
+      "slug": "textiles"
+    },
+    {
+      "name": "Herbal",
+      "slug": "herbal"
+    },
+    {
+      "name": "Kumbam Prayer Items",
+      "slug": "kumbam-prayer-items"
+    }
+  ],
+  "products": [
+    {
+      "name": "Sunfeast Dark Fantasy",
+      "category": "groceries",
+      "image": "sunfeast-dark-fantasy.webp"
+    },
+    {
+      "name": "Continental XTRA",
+      "category": "groceries",
+      "image": "continental-xtra.webp"
+    },
+    {
+      "name": "Green Tea",
+      "category": "groceries",
+      "image": "green-tea.jpg"
+    },
+    {
+      "name": "Liquid Detergent",
+      "category": "groceries",
+      "image": "liquid-detergent.webp"
+    },
+    {
+      "name": "Hey Grain Cookies",
+      "category": "groceries",
+      "image": "hey-grain-cookies.webp"
+    },
+    {
+      "name": "Nutella & Go with Breadsticks",
+      "category": "groceries",
+      "image": "nutella-go.jpg"
+    },
+    {
+      "name": "California Almonds",
+      "category": "groceries",
+      "image": "california-almonds.jpg"
+    },
+    {
+      "name": "Apple Cider Vinegar",
+      "category": "groceries",
+      "image": "apple-cider-vinegar.jpg"
+    },
+    {
+      "name": "Baidyanath Honey",
+      "category": "groceries",
+      "image": "baidyanath-honey.webp"
+    },
+    {
+      "name": "VMS Careline",
+      "category": "groceries",
+      "image": "vms-careline.webp"
+    },
+    {
+      "name": "Sandpuppy",
+      "category": "groceries",
+      "image": "sandpuppy.webp"
+    },
+    {
+      "name": "Parle-G Original Biscuits",
+      "category": "biscuits",
+      "image": "parle-g.webp"
+    },
+    {
+      "name": "Good Day Biscuits",
+      "category": "biscuits",
+      "image": "good-day.jpg"
+    },
+    {
+      "name": "Hupseng Biscuits",
+      "category": "biscuits",
+      "image": "hupseng.jpeg"
+    },
+    {
+      "name": "Britannia Tiger",
+      "category": "biscuits",
+      "image": "britannia-tiger.jpg"
+    },
+    {
+      "name": "Julie's Biscuits",
+      "category": "biscuits",
+      "image": "julies.jpg"
+    },
+    {
+      "name": "Sunquick",
+      "category": "drinks",
+      "image": "sunquick.jpg"
+    },
+    {
+      "name": "100+",
+      "category": "drinks",
+      "image": "100-plus.jpg"
+    },
+    {
+      "name": "F & N",
+      "category": "drinks",
+      "image": "f-and-n.jpg"
+    },
+    {
+      "name": "Maaza Mango Drink 600 ml",
+      "category": "drinks",
+      "image": "maaza.webp"
+    },
+    {
+      "name": "Bournvita Chocolate Nutrition Drink",
+      "category": "drinks",
+      "image": "bournvita.webp"
+    },
+    {
+      "name": "Cadbury Dairy Milk Chocolate",
+      "category": "dairy-and-bakery",
+      "image": "dairy-milk.webp"
+    },
+    {
+      "name": "Mister Potato Chips",
+      "category": "dairy-and-bakery",
+      "image": "mister-potato.jpg"
+    },
+    {
+      "name": "Farm Fresh",
+      "category": "dairy-and-bakery",
+      "image": "farm-fresh.jpg"
+    },
+    {
+      "name": "McCain French Fries",
+      "category": "dairy-and-bakery",
+      "image": "mccain-fries.webp"
+    },
+    {
+      "name": "GRB Ghee",
+      "category": "dairy-and-bakery",
+      "image": "grb-ghee.jpg"
+    },
+    {
+      "name": "Buruh Refined Oil 5kg",
+      "category": "cooking-essentials",
+      "image": "buruh-oil.webp"
+    },
+    {
+      "name": "Knife Cooking Oil 5kg",
+      "category": "cooking-essentials",
+      "image": "knife-oil.jpg"
+    },
+    {
+      "name": "Serimurni Cooking Oil 5kg",
+      "category": "cooking-essentials",
+      "image": "serimurni.webp"
+    },
+    {
+      "name": "Idhayam Sesame Oil",
+      "category": "cooking-essentials",
+      "image": "idhayam.jpg"
+    },
+    {
+      "name": "Aashirwaad Aata 5KG",
+      "category": "cooking-essentials",
+      "image": "aashirwaad.webp"
+    },
+    {
+      "name": "Pillsbury Aata 5KG",
+      "category": "cooking-essentials",
+      "image": "pillsbury.jpg"
+    },
+    {
+      "name": "3 Roses Tea",
+      "category": "cooking-essentials",
+      "image": "3-roses.jpg"
+    },
+    {
+      "name": "Taj Mahal Tea",
+      "category": "cooking-essentials",
+      "image": "taj-mahal.jpg"
+    },
+    {
+      "name": "Nescafe Sunrise Coffee",
+      "category": "cooking-essentials",
+      "image": "nescafe.jpg"
+    },
+    {
+      "name": "Tata Agni Tea",
+      "category": "cooking-essentials",
+      "image": "tata-agni.jpg"
+    },
+    {
+      "name": "Kissan Fresh Tomato Ketchup",
+      "category": "cooking-essentials",
+      "image": "kissan.jpg"
+    },
+    {
+      "name": "Rajabogam Rice 25Kg",
+      "category": "rice",
+      "image": "rajabogam.jpg"
+    },
+    {
+      "name": "Soan Papdi",
+      "category": "packaged-foods",
+      "image": "soan-papdi.webp"
+    },
+    {
+      "name": "Maggi 2-Minute Masala Noodles",
+      "category": "packaged-foods",
+      "image": "maggi.webp"
+    },
+    {
+      "name": "KitKat Chocolate",
+      "category": "packaged-foods",
+      "image": "kitkat.webp"
+    },
+    {
+      "name": "Bhujia Sev",
+      "category": "packaged-foods",
+      "image": "bhujia.webp"
+    },
+    {
+      "name": "Haldiram's Navaratna Mix",
+      "category": "packaged-foods",
+      "image": "navaratna.webp"
+    },
+    {
+      "name": "Harpic Power Plus",
+      "category": "home-care",
+      "image": "harpic.jpg"
+    },
+    {
+      "name": "Surf Excel Easy Wash",
+      "category": "home-care",
+      "image": "surf-excel.webp"
+    },
+    {
+      "name": "Good Knight Gold",
+      "category": "home-care",
+      "image": "good-knight.webp"
+    },
+    {
+      "name": "Comfort Desire",
+      "category": "home-care",
+      "image": "comfort.webp"
+    },
+    {
+      "name": "Odonil",
+      "category": "home-care",
+      "image": "odonil.jpg"
+    },
+    {
+      "name": "Lizol Citrus Disinfectant",
+      "category": "home-care",
+      "image": "lizol.webp"
+    },
+    {
+      "name": "Nippo LED Bulb 9W",
+      "category": "home-care",
+      "image": "nippo-led.webp"
+    },
+    {
+      "name": "Shree Carpet",
+      "category": "textiles",
+      "image": "shree-carpet.png"
+    },
+    {
+      "name": "Georgette Sarees",
+      "category": "textiles",
+      "image": "georgette-sarees.webp"
+    },
+    {
+      "name": "Waving Carpet",
+      "category": "textiles",
+      "image": "waving-carpet.jpg"
+    },
+    {
+      "name": "Polyster Carpet",
+      "category": "textiles",
+      "image": "polyster-carpet.webp"
+    },
+    {
+      "name": "Kanjeepuram Saree",
+      "category": "textiles",
+      "image": "kanjeepuram-saree.jpg"
+    },
+    {
+      "name": "Partywear Saree",
+      "category": "textiles",
+      "image": "partywear-saree.webp"
+    },
+    {
+      "name": "Dabur Honey",
+      "category": "herbal",
+      "image": "dabur-honey.jpg"
+    },
+    {
+      "name": "Sukku Malli",
+      "category": "herbal",
+      "image": "sukku-malli.jpg"
+    },
+    {
+      "name": "Hydrating Cream",
+      "category": "herbal",
+      "image": "hydrating-cream.webp"
+    },
+    {
+      "name": "Chyawanprash",
+      "category": "herbal",
+      "image": "chyawanprash.webp"
+    },
+    {
+      "name": "Black Sesame Seeds",
+      "category": "herbal",
+      "image": "black-sesame.webp"
+    },
+    {
+      "name": "Amrithnoni",
+      "category": "herbal",
+      "image": "amrithnoni.webp"
+    },
+    {
+      "name": "Amla Juice",
+      "category": "herbal",
+      "image": "amla-juice.webp"
+    },
+    {
+      "name": "Camphor Tablets",
+      "category": "kumbam-prayer-items",
+      "image": "camphor.jpeg"
+    },
+    {
+      "name": "Saffron",
+      "category": "kumbam-prayer-items",
+      "image": "saffron.jpeg"
+    },
+    {
+      "name": "Kumbam Special Items",
+      "category": "kumbam-prayer-items",
+      "image": "kumbam-special.jpeg"
+    },
+    {
+      "name": "Incense Sticks",
+      "category": "kumbam-prayer-items",
+      "image": "incense-sticks.jpeg"
+    },
+    {
+      "name": "Ayya Homam",
+      "category": "kumbam-prayer-items",
+      "image": "ayya-homam.jpeg"
+    },
+    {
+      "name": "Sambrani",
+      "category": "kumbam-prayer-items",
+      "image": "sambrani.jpeg"
+    },
+    {
+      "name": "Sandal Powder",
+      "category": "kumbam-prayer-items",
+      "image": "sandal-powder.jpeg"
+    },
+    {
+      "name": "Crochet Cotton",
+      "category": "kumbam-prayer-items",
+      "image": "crochet-cotton.jpeg"
+    },
+    {
+      "name": "Ayya Sambrani",
+      "category": "kumbam-prayer-items",
+      "image": "ayya-sambrani.jpeg"
+    },
+    {
+      "name": "Subham Pooja Items",
+      "category": "kumbam-prayer-items",
+      "image": "subham-pooja.jpeg"
+    },
+    {
+      "name": "Thirunur",
+      "category": "kumbam-prayer-items",
+      "image": "thirunur.jpeg"
+    },
+    {
+      "name": "Champa Sambrani",
+      "category": "kumbam-prayer-items",
+      "image": "champa-sambrani.jpeg"
+    },
+    {
+      "name": "Kumbam Special Sambrani",
+      "category": "kumbam-prayer-items",
+      "image": "kumbam-sambrani.jpeg"
+    },
+    {
+      "name": "Smokeless Camphor",
+      "category": "kumbam-prayer-items",
+      "image": "smokeless-camphor.jpeg"
+    },
+    {
+      "name": "Kreyam's Agarbatti",
+      "category": "kumbam-prayer-items",
+      "image": "kreyam-agarbatti.webp"
+    }
+  ]
+}

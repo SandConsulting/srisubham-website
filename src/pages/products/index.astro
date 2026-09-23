@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { listCategories, listProducts } from '../../lib/db';
+
+const categories = listCategories();
+const category = Astro.url.searchParams.get('category') ?? '';
+const q = Astro.url.searchParams.get('q') ?? '';
+const products = listProducts({ category, q });
+const active = categories.find((item) => item.slug === category);
+const title = active ? active.name : 'Products';
+---
+
+<Base title={title} description="Browse the SRI SUBHAM product catalog.">
+  <h1>{title}</h1>
+  <p class="lede">Product information only. Ask in store for price and availability.</p>
+
+  <form class="filters-form" method="get" action="/products">
+    <label>
+      Category
+      <select name="category">
+        <option value="">All products</option>
+        {
+          categories.map((item) => (
+            <option value={item.slug} selected={item.slug === category}>
+              {item.name}
+            </option>
+          ))
+        }
+      </select>
+    </label>
+    <label>
+      Keyword
+      <input type="search" name="q" value={q} placeholder="Search by name" />
+    </label>
+    <button type="submit">Search</button>
+  </form>
+
+  {
+    products.length === 0 ? (
+      <p class="empty">No products match that search.</p>
+    ) : (
+      <div class="grid">
+        {products.map((product) => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    )
+  }
+</Base>

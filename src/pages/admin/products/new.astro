@@ -1,0 +1,31 @@
+---
+import Admin from '../../../layouts/Admin.astro';
+import ProductForm from '../../../components/ProductForm.astro';
+import { createProduct, listCategories } from '../../../lib/db';
+import { removeUpload, saveImage } from '../../../lib/uploads';
+
+let error = '';
+const categories = listCategories();
+
+if (Astro.request.method === 'POST') {
+  let image: string | null = null;
+  try {
+    const form = await Astro.request.formData();
+    image = await saveImage(form.get('image') as File);
+    const id = createProduct({
+      name: String(form.get('name') ?? ''),
+      categoryId: Number(form.get('category_id')),
+      description: String(form.get('description') ?? ''),
+      imagePath: image,
+    });
+    return Astro.redirect(`/admin/products/${id}`);
+  } catch (err) {
+    removeUpload(image);
+    error = err instanceof Error ? err.message : 'Could not add the product.';
+  }
+}
+---
+
+<Admin title="Add product">
+  <ProductForm categories={categories} error={error} />
+</Admin>
